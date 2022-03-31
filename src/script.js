@@ -21,13 +21,13 @@ const scene = new THREE.Scene()
 const parameters = {}
 parameters.count = 100000
 parameters.size = 0.01
-parameters.radius = 5
-parameters.branches = 3
-parameters.spin = 1
-parameters.randomness = 0.2
-parameters.randomnessPower = 3
-parameters.insideColor = '#ff6030'
-parameters.outsideColor = '#1b3984'
+parameters.radius = 3
+parameters.branches = 4
+parameters.spin = 3
+parameters.randomness = 4
+parameters.randomnessPower = 5
+parameters.insideColor = '#ff40ff'
+parameters.outsideColor = '#ff6030'
 
 let geometry = null
 let material = null
@@ -142,9 +142,9 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 3
-camera.position.y = 3
-camera.position.z = 3
+// camera.position.x = 3
+camera.position.y = 6
+// camera.position.z = 3
 scene.add(camera)
 
 // Controls
@@ -164,14 +164,24 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Animate
  */
 const clock = new THREE.Clock()
-
+// let test = 3;
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
     // Update controls
     controls.update()
+    camera.rotation.z = Math.sin(elapsedTime * 0.2) * 0.2;
+    
+    // console.log(test)
+    // if(test  > 12 || test > 3){
+    //     test = test - 0.05
+    // } 
+    // else if(test < 12) {
+    //     test = test + 0.05
+    // }
 
+    // camera.position.y = test
     // Render
     renderer.render(scene, camera)
 
